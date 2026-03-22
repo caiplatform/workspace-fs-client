@@ -1,0 +1,25 @@
+services:
+  term:
+    build:
+      context: .
+      dockerfile: ./images/term/Dockerfile
+      args:
+        DOCKER_GID: "${DOCKER_GID}"
+    volumes:
+      - ${PWD}/shared:${PWD}/shared
+      - ~/.ssh:/home/dev/.ssh:ro
+      - ~/.gitconfig:/home/dev/.gitconfig:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: ${PWD}/shared
+    group_add:
+      - "${DOCKER_GID}"
+    restart: unless-stopped
+    command: ["ttyd", "-W", "-p", "7681", "bash", "-lc", "cd ${PWD}/shared && exec bash"]
+  fs:
+    image: monkcase/cai:ide-workspace-fs-v0.0.1
+    volumes:
+      - ./shared:/work
+  haproxy:
+    image: monkcase/cai:ide-workspace-haproxy-v0.0.1
+    ports:
+      - "49177:80"
