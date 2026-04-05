@@ -3,6 +3,7 @@ services:
     image: monkcase/cai:ide-workspace-fs-v0.0.1
     volumes:
       - ./shared:/work
+      - ./tunnel-data:/tunnel-data
   haproxy:
     image: monkcase/cai:ide-workspace-haproxy-v0.0.1
     ports:

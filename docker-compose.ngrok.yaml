@@ -1,7 +1,0 @@
-services:
-  ngrok:
-    image: ngrok/ngrok:latest
-    command: ["http", "49177", "--log=stdout", "--log-level=info"]
-    network_mode: host
-    environment:
-      NGROK_AUTHTOKEN: "${NGROK_AUTHTOKEN}"

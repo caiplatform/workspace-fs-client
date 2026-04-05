@@ -5,12 +5,6 @@ This agent allows you to connect your local machine (or server) to the cloud IDE
 Once connected, you can work with your files remotely via:
 👉 https://ide.caiplatform.co/
 
-## Why this exists
-
-Because your local environment is useful, and browsers pretending to be IDEs need access to it.
-
-This agent securely exposes your machine to the cloud IDE using a temporary public endpoint.
-
 ## Requirements
 
 Make sure you have the following installed:
@@ -39,7 +33,7 @@ Copy your token.
 ### 3. Start the agent
 
 ```bash
-./up.sh --ngrok-token 'your_token_here'
+./up.sh --with-cloud-tunnel
 ```
 
 ## Usage

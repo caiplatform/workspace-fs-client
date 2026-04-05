@@ -1,0 +1,9 @@
+services:
+  cloudflared:
+    build: ./cloudflared/
+    restart: unless-stopped
+    volumes:
+      - ./cloudflared/data:/data
+      - ./tunnel-data:/tunnel-data
+    depends_on:
+      - haproxy
