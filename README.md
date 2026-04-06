@@ -11,7 +11,6 @@ Make sure you have the following installed:
 
 - Git
 - Docker (the agent runs containers under the hood)
-- Ngrok account (free is enough)
 
 Without these, nothing magical will happen.
 
@@ -23,12 +22,6 @@ Without these, nothing magical will happen.
 git clone git@github.com:caiplatform/workspace-fs-client.git
 cd workspace-fs-client
 ```
-
-### 2. Get your Ngrok token
-
-Go to: https://dashboard.ngrok.com/get-started/your-authtoken
-
-Copy your token.
 
 ### 3. Start the agent
 

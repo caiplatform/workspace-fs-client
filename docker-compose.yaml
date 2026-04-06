@@ -3,7 +3,16 @@ services:
     image: monkcase/cai:ide-workspace-fs-v0.0.1
     volumes:
       - ./shared:/work
-      - ./tunnel-data:/tunnel-data
+  term:
+    image: monkcase/cai:ide-workspace-term-v0.0.1
+    volumes:
+      - ${PWD}/shared:${PWD}/shared
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: ${PWD}/shared
+    group_add:
+      - "${DOCKER_GID}"
+    restart: unless-stopped
+    command: ["ttyd", "-W", "-p", "7681", "bash", "-lc", "cd ${PWD}/shared && exec bash"]
   haproxy:
     image: monkcase/cai:ide-workspace-haproxy-v0.0.1
     ports:
