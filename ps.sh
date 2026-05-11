@@ -1,7 +1,23 @@
 #!/usr/bin/env bash
 set -e
 
-export DOCKER_GID=$(stat -c %g /var/run/docker.sock)
-export PWD=$(pwd)
+case "$(uname -s)" in
+  Darwin)
+    DOCKER_SOCK="${DOCKER_SOCK:-$HOME/.docker/run/docker.sock}"
+    STAT_GID_CMD=(stat -f %g)
+    ;;
+  *)
+    DOCKER_SOCK="${DOCKER_SOCK:-/var/run/docker.sock}"
+    STAT_GID_CMD=(stat -c %g)
+    ;;
+esac
+
+if [ ! -S "$DOCKER_SOCK" ]; then
+  echo "Docker socket not found or is not a socket: $DOCKER_SOCK" >&2
+  exit 1
+fi
+
+export DOCKER_GID="$("${STAT_GID_CMD[@]}" "$DOCKER_SOCK")"
+export PWD="$(pwd)"
 
 docker compose ps
