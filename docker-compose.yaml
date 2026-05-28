@@ -5,6 +5,7 @@ services:
       - ./shared:/work
   term:
     image: monkcase/cai:ide-workspace-term-v0.0.1
+    user: root
     volumes:
       - ${PWD}/shared:${PWD}/shared
       - /var/run/docker.sock:/var/run/docker.sock

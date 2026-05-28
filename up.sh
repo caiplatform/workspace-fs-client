@@ -20,4 +20,4 @@ fi
 export DOCKER_GID="$("${STAT_GID_CMD[@]}" "$DOCKER_SOCK")"
 export PWD=$(pwd)
 
-docker compose up -d
+docker compose up -d --force-recreate
