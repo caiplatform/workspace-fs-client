@@ -2,10 +2,10 @@
 .DS_Store
 **/.DS_Store
 
-# folders inside shared
-cai-caddy-proxy-server/
-cai-deploy/
-cai-workspace-ai-fs/
-cai/
-welcome/
-workspace-fs-client/
+# Ignore everything in this directory
+*
+
+# But keep this file
+!.gitignore
+
+
